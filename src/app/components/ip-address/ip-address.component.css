@@ -1,0 +1,35 @@
+
+#mapid {
+  margin-top: 20px;
+  height: 70vh;
+  margin: 0 auto;
+}
+
+.ipAlignment{
+  margin: 0 auto;
+}
+
+
+
+.error-text{
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+input{
+  box-sizing: none !important;
+ 
+}
+
+
+.dark{
+  background-color: #2d3436;
+  color: white;
+}
+ 
+.light{
+  background-color: white;
+  color: black;
+}
+

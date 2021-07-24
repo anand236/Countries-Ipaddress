@@ -1,0 +1,17 @@
+.dark{
+    background-color: #2d3436;
+}
+
+.light{
+    background-color: #ffffff;
+}
+
+.btndark{
+    color: white;
+    background-color:hsl(209, 23%, 22%);;
+}
+
+.btnlight{
+    color: black;
+    background-color: #ffffff;
+}

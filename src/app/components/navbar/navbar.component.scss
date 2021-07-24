@@ -1,0 +1,62 @@
+@import "../../styles/mixin";
+
+.main-header {
+
+    nav{
+        ul>li>a{
+            font-family: $font-family;
+            font-weight: 700;
+        }
+
+        mat-button-toggle,button {
+            border: none !important;
+            font-family: $font-family;
+            font-weight: 700;
+          }
+
+    }
+
+  .dark {
+    nav {
+      @include dark-mode;
+      mat-button-toggle,
+      button {
+        @include dark-mode;
+      }
+      a {
+        color: $light-color;
+      }
+      a.active {
+        color: yellow;
+        font-weight: 800;
+      }
+      div.body-color{
+        @include dark-mode;
+      }
+      // div.modal-btn{
+      //   background-color: 
+      // }
+    }
+  }
+  .light {
+    nav {
+      @include light-mode;
+      mat-button-toggle,
+      button {
+        @include light-mode;
+      }
+      a {
+        color: $dark-color;
+      }
+      a.active {
+        color: purple;
+        font-weight: 800;
+      }
+      div.body-color{
+        @include light-mode;
+      }
+    }
+  }
+}
+
+

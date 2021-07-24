@@ -1,0 +1,48 @@
+.main{
+    margin-top: 4%;
+}
+
+.point{
+    cursor: pointer;
+}
+
+img{
+    object-fit: cover;
+    height: 170px;
+}
+
+.loader{
+    width: 100%;
+    height: 100%;
+}
+
+.dark{
+    background-color: #2d3436;
+    color: white;
+}
+
+.light{
+    background-color: #ffffff;
+    color: black;
+}
+
+.cll{
+    position: relative;
+    z-index: 2;
+}
+
+
+
+.card{
+    border: 0px;
+}
+
+.darkCard{
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
+.lightCard{
+background-color: white;
+color: black;
+}

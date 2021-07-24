@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<div class="container mt-2">
+
+    <div>
+        <button [ngClass]="darkModeStatus ? 'btndark':'btnlight'" mat-raised-button (click)='backNav()'>back</button>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div *ngFor='let country of countryData'>
+                <div class=" shadow mt-2 mb-3 bg-white rounded">
+                    <img [src]="country.flag" width="100%" alt="" (click)='ipAddress()' style="cursor: pointer;"
+                        matTooltip='Click to open this country in map'>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div *ngFor='let country of countryData'>
+                <div class="p-2 ">
+                    <p class="display-4">{{country.name}}</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="p-2">
+                            <p><b>Native Name: </b> {{country.nativeName}}</p>
+                            <p><b>Population: </b> {{country.population}}</p>
+                            <p><b>Region: </b>{{country.region}}</p>
+                            <p><b>Subregion: </b>{{country.subregion}}</p>
+                            <p><b>Capital: </b>{{country.capital}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-2">
+                            <p><b>Top Level Domain: </b>{{country.topLevelDomain}}</p>
+                            <p><b>Currencies:</b>
+                                <span *ngFor='let currency of country.currencies'> {{currency.code}}</span>
+                            </p>
+
+                            <p><b>Languages:</b>
+                                <span *ngFor='let lang of country.languages'> {{lang.name}}</span>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="m-2">
+                        <p><b>Borders:</b>
+                            <button [ngClass]="darkModeStatus ? 'btndark':'btnlight'" mat-raised-button
+                                matTooltip="{{hoveredOuntry}}" class="m-2" *ngFor='let border of country.borders'
+                                (mouseover)='countryName(border)' (click)='borderSelected(border)'> {{border}}</button>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>

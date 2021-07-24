@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+
+    <div class="row ">
+        <div class="mt-4">
+
+            <div class="fs-5 text-center">
+                <p><b>IP Address Tracker</b></p>
+            </div>
+
+            <form [formGroup]='ipForm' (ngSubmit)='findIp(ipForm.value)' class="row justify-content-center">
+                <div class=" col-md-6">
+                    <div class="input-group">
+                        <input type="text" [ngClass]="darkModeStatus ? 'dark':'light'" class="form-control shadow-none" formControlName='ip' placeholder="Search ip address">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary shadow-none border-none" type="submit">
+                                <i class="fa fa-search "></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <ng-container *ngIf='showError'>
+                <div class="error-text">
+                    <span *ngIf='ipForm.get("ip").hasError("required")'>Please enter IP
+                        address</span>
+                    <span *ngIf='ipForm.get("ip").hasError("pattern")'>Please enter valid IP
+                        address</span>
+                </div>
+            </ng-container>
+
+            <div class="text-center">
+                <div class="row mt-2" *ngIf='showIp'>
+                    <div class="col-md-3 box">
+                        <h3>IP Address</h3>
+                        <h1>{{ip}}</h1>
+                    </div>
+                    <div class="col-md-3 box">
+                        <h3>Location</h3>
+                        <h1>{{region}} {{country}} {{postalCode}}</h1>
+                    </div>
+                    <div class="col-md-3 box">
+                        <h3>Timezone</h3>
+                        <h1>{{timezone}}</h1>
+                    </div>
+                    <div class="col-md-3 box">
+                        <h3>ISP</h3>
+                        <h1>{{isp}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+   
+    <div id="mapid" class="mt-4"></div>
+</div>
+
+<div class="loader">
+    <ngx-loading [show]="loading" [config]="{animationType: ngxLoadingAnimationTypes.rotatingPlane, 
+    primaryColour: primaryColour, 
+    backdropBorderRadius: '3px', 
+    fullScreenBackdrop:true
+    }"></ngx-loading>
+</div>

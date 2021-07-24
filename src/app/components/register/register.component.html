@@ -1,0 +1,93 @@
+<div class="bg">
+    <div class="container ">
+        <div class="row justify-content-center" style=" height: 90vh;">
+            <div class="col-md-5 align-self-center">
+                <form [formGroup]='registerForm' (ngSubmit)='submit(registerForm.value)'>
+                    <p class="display-4">Welcome,</p>
+                    <div class="p-2 ">
+                        <label><b>First Name</b></label>
+                        <input type="text" class="form-control shadow rounded" formControlName='firstname'
+                            placeholder="Enter First Name">
+                        <ng-container *ngIf='submitted'>
+                            <span style="color: red;" *ngIf='registerForm.get("firstname").hasError("required")'>Please
+                                Enter First Name
+                            </span>
+                        </ng-container>
+                    </div>
+
+                    <div class="p-2 ">
+                        <label><b>Last Name</b></label>
+                        <input type="text" class="form-control shadow rounded" formControlName='lastname'
+                            placeholder="Enter Last Name">
+                        <ng-container *ngIf='submitted'>
+                            <span style="color: red;" *ngIf='registerForm.get("lastname").hasError("required")'>Please
+                                Enter Last Name
+                            </span>
+                        </ng-container>
+                    </div>
+
+                    <div class="p-2 ">
+                        <label><b>Email</b></label>
+                        <input type="email" class="form-control shadow rounded" formControlName='mail'
+                            placeholder="Enter Mail Id">
+                        <ng-container *ngIf='submitted'>
+                            <span style="color: red;" *ngIf='registerForm.get("mail").hasError("required")'>Please
+                                Enter Valid Mail Id
+                            </span>
+                            <span style="color: red;" *ngIf='registerForm.get("mail").hasError("pattern")'>Please
+                                Enter Valid Mail Id
+                            </span>
+                        </ng-container>
+                    </div>
+
+                    <div class="p-2">
+                        <label><b>Password</b></label>
+                        <input type="password" class="form-control shadow rounded" formControlName='password'
+                            placeholder="Enter Password">
+                        <ng-container *ngIf='submitted'>
+                            <span style="color: red;" *ngIf='registerForm.get("password").hasError("required")'>Please
+                                Enter Password
+                            </span>
+                        </ng-container>
+                    </div>
+
+                    <div class="p-2">
+                        <label><b>Confirm Password</b></label>
+                        <input type="password" class="form-control shadow rounded" formControlName='cpassword'
+                            placeholder="Confirm Password ">
+                        <ng-container *ngIf='submitted'>
+                            <span style="color: red;" *ngIf='registerForm.get("cpassword").hasError("required")'>Please
+                                Confirm Password
+                            </span>
+                            <span
+                                *ngIf="registerForm.errors?.misMatch && !registerForm.get('cpassword').hasError('required') ">
+                                <p style="color: red;">Confirm password does not match</p>
+                            </span>
+                        </ng-container>
+
+                        <ng-container *ngIf='submitted'>
+                            <span style="color: red;">{{fireBaseError}}</span>
+                        </ng-container>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between p-2">
+                        <div>
+                            <button mat-raised-button color="accent" type="submit">Register</button>
+                        </div>
+                        <div>
+                            <button mat-raised-button color="accent" type="button" routerLink='/login'>Already have an
+                                account</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="loading">
+            <ngx-loading [show]="loading"
+                [config]="{animationType: ngxLoadingAnimationTypes.rotatingPlane, primaryColour: primaryColour, backdropBorderRadius: '3px'}"
+                [template]="loadingTemplate"></ngx-loading>
+        </div>
+    </div>
+</div>

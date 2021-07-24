@@ -1,0 +1,56 @@
+<div class="main-header">
+    <div [ngClass]="darkModeStatus ? 'dark' : 'light'">
+        <nav class="navbar navbar-expand-lg  point shadow">
+            <div class="container">
+
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/countries" routerLinkActive="active"
+                            routerLinkOptions="{exact:true}"><b>WHERE IN
+                                THE
+                                WORLD</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='/ip-address' routerLinkActive="active"><b>IP
+                                ADDRESS</b></a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto rightNav">
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <mat-button-toggle appearance='legacy' class="shadow-none lh-0" (change)="onToggle()">
+                                {{darkModeStatus ? 'Light Mode':'Dark Mode' }}
+                            </mat-button-toggle>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <button class="point shadow-none" mat-flat-button type="button" data-toggle="modal" data-target="#modalPopup">
+                                Logout
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal fade " id="modalPopup" tabindex="-1" role="dialog" aria-labelledby="modalPopupLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                  <div class="modal-content body-color">
+            
+                    <div class="modal-body " >
+                        <h1 [ngClass]="darkModeStatus ? 'dark':'light'" class="modal-title" id="modalPopupLabel">Are you sure you want to exit?</h1>
+                    </div>
+            
+                    <div class="modal-footer modal-btn">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close" (click)='logOut()'>Yes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </nav>
+    </div>
+</div>
+  
+  

@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+<div class="container main">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group mb-3 point shadow rounded">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1" [ngClass]="darkModeStatus ? 'dark':'light'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </span>
+                </div>
+                <input type="text" [(ngModel)]='searchedText' class="form-control" placeholder="Search Countries"
+                    [ngClass]="darkModeStatus ? 'dark':'light'">
+            </div>
+        </div>
+
+        <div class="col-md-3 ">
+            <select class="form-select point shadow rounded" aria-label="Default select example"
+                [(ngModel)]='selectedDropdown' [ngClass]="darkModeStatus ? 'dark':'light'"
+                (change)='searchByFunction($event.target.value)'>
+                <option *ngFor='let search of searchBy' value="{{search}}">{{search}}</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-select point shadow rounded" aria-label="Default select example"
+                [ngClass]="darkModeStatus ? 'dark':'light'" (change)='regionSelected($event.target.value, page)'
+                [(ngModel)]='selectedRegion'>
+                <option *ngFor='let region of searchByRegion' value="{{region}}">{{region}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div *ngIf="(countryData | serachFilter: searchedText : selectedDropdown)?.length == 0">
+        <h1>No Results found for <b>"{{searchedText}}"</b></h1>
+    </div>
+
+
+    <div class="row">
+        <ng-container *ngFor='let country of countryData | serachFilter : searchedText : selectedDropdown
+        | paginate:  
+        {
+        id:"countryPerPage",
+        itemsPerPage:4,
+        currentPage:page,
+        totalItems:totalUserData
+        };
+         let i = index'>
+            <div class="col-md-3 mb-3">
+                <div class="card point shadow mb-3 rounded"  matTooltip="click to view country details" (click)='goToSingleCountry(country.name,i)'>
+                    <img class="card-img-top img-fluid " src="{{country.flag}}" alt="{{country.name}}">
+
+                    <div class="card-body" [ngClass]="darkModeStatus ? 'darkCard':'lightCard'">
+                        <h2 class="card-title">{{country.name}}</h2>
+                        <p>Population: {{country.population}}</p>
+                        <p>Region: {{country.region}}</p>
+                        <p>Capital: {{country.capital}}</p>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </ng-container>
+
+        <div class="d-flex justify-content-end">
+            <div>
+                <pagination-controls id='countryPerPage' responsive="true" maxSize='8' directionLinks='true'
+                    (pageChange)='onPageChange($event)'></pagination-controls>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="loader">
+        <ngx-loading [show]="loading" [config]="{animationType: ngxLoadingAnimationTypes.rotatingPlane, 
+        primaryColour: primaryColour, 
+        backdropBorderRadius: '3px', 
+        fullScreenBackdrop:true
+        }"></ngx-loading>
+    </div>
+
+</div>
+

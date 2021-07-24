@@ -1,0 +1,23 @@
+@import "../node_modules/ngx-toastr/toastr.css";
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+
+/* for dark n light mode of the only body of components, not headers */
+body.dark-mode {
+    background-color: #2d3436;
+    color: white;
+  }
+  
+  body.light-mode {
+    background-color: white;
+    color: black;
+  }
+
+
+
+  

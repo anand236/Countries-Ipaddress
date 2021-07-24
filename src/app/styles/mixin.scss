@@ -1,0 +1,13 @@
+@import "./variables";
+
+@mixin dark-mode {
+    background-color:  hsl(209, 23%, 22%);
+    color: white;
+  }
+  
+  @mixin light-mode {
+    background-color:  white;
+    color: hsl(209, 23%, 22%);
+  }
+
+ 
